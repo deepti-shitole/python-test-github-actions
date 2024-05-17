@@ -12,6 +12,7 @@ pipeline {
             steps {
                 // Run the Java program
                 sh 'java HelloWorld'
+                echo "Pipeline succeed"
             }
         }
     }
