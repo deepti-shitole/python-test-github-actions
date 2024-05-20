@@ -13,8 +13,8 @@ pipeline {
         stage('Run') {
             steps {
                 // Run the Java program
-                sh 'java HelloWorld'
-                echo "Pipeline succeed"
+                bat 'start cmd /c "java HelloWorld"'
+                echo "Pipeline succeeded"
             }
         }
     }
