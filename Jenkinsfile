@@ -29,5 +29,13 @@ pipeline {
                 }
            }
         }
+     stage('Push to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'doc-cred') {
+                        docker.image('myfirstjavaimage').push('latest')
+                    }
+                }
+            }    
     }
 }
