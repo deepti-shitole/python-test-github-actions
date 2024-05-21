@@ -25,7 +25,7 @@ pipeline {
             steps {
                 // Build Docker image
                script {
-                    bat 'docker build -t MyjavaImage .'
+                    bat 'docker build -t myfirstjavaimage .'
                 }
            }
         }
