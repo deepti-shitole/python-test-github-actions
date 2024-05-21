@@ -18,13 +18,13 @@ pipeline {
                 echo "Pipeline succeeded"
             }
         }
-        stage('Build docker image') {
-            steps {
+        //stage('Build docker image') {
+          //  steps {
                 // Build Docker image
-                script {
-                    bat 'docker build -t MyjavaImage .'
-                }
-            }
-        }
+               // script {
+                 //   bat 'docker build -t MyjavaImage .'
+               // }
+           // }
+        //}
     }
 }
