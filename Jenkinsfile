@@ -1,5 +1,5 @@
 pipeline {
-   
+ agent any
     tools {
         // Specify the JDK tool installation name
         jdk "jdk"
