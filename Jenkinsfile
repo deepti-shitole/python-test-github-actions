@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'Agent-1'
-    }
+   
     tools {
         // Specify the JDK tool installation name
         jdk "jdk"
