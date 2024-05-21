@@ -18,6 +18,19 @@ pipeline {
                 echo "Pipeline succeeded"
             }
         }
+     stage('Install Docker') {
+            steps {
+                script {
+                    // Install Docker using the Docker Pipeline Plugin
+                    docker.withServer('tcp://docker-server:2376') {
+                        docker.image('docker:latest').inside {
+                            bat 'docker --version'
+                            
+                        }
+                    }
+                }
+            }
+        }
         //stage('Build docker image') {
           //  steps {
                 // Build Docker image
