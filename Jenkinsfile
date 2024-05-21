@@ -20,26 +20,14 @@ pipeline {
 
             }
         }
-     //stage('Install Docker') {
-           // steps {
-              //  script {
-                    // Install Docker using the Docker Pipeline Plugin
-                   // docker.withServer('tcp://docker-server:2376') {
-                     //   docker.image('docker:latest').inside {
-                       //     bat 'docker --version'
-                            
-                      //  }
-//}
-              //  }
-          //  }
-//}
-        //stage('Build docker image') {
-          //  steps {
+     
+        stage('Build docker image') {
+            steps {
                 // Build Docker image
-               // script {
-                 //   bat 'docker build -t MyjavaImage .'
-               // }
-           // }
-        //}
+               script {
+                    bat 'docker build -t MyjavaImage .'
+                }
+           }
+        }
     }
 }
