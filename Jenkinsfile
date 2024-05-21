@@ -16,7 +16,7 @@ pipeline {
                 // Run the Java program
                 bat 'java HelloWorld'
                 echo "Pipeline succeeded"
-                 bat "Run.bat ${params.ENVIRONMENT} ${params.VERSION}"
+                 
 
             }
         }
