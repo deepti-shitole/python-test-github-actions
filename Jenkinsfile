@@ -19,6 +19,12 @@ pipeline {
                 echo "Pipeline succeeded"
             }
         }
+        stage('Build docker image'){
+            steps{
+                script{
+                    bat 'docker build -t MyjavaImage'
     }
+            }
+        }
 }
 
