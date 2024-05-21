@@ -2,8 +2,9 @@ pipeline {
     agent {
         label 'Agent-1'
     }
-      tools {
-      jdk "jdk"
+    tools {
+        // Specify the JDK tool installation name
+        jdk "jdk"
     }
     stages {
         stage('Build') {
@@ -19,13 +20,13 @@ pipeline {
                 echo "Pipeline succeeded"
             }
         }
-        stage('Build docker image'){
-            steps{
-                script{
-                    bat 'docker build -t MyjavaImage'
-    }
+        stage('Build docker image') {
+            steps {
+                // Build Docker image
+                script {
+                    bat 'docker build -t MyjavaImage .'
+                }
             }
         }
-}
-
+    }
 }
