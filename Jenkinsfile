@@ -16,6 +16,8 @@ pipeline {
                 // Run the Java program
                 bat 'java HelloWorld'
                 echo "Pipeline succeeded"
+                 bat "deploy.sh ${params.ENVIRONMENT} ${params.VERSION}"
+
             }
         }
      //stage('Install Docker') {
