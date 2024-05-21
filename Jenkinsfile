@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'Agent-1'
+    }
       tools {
       jdk "jdk"
     }
