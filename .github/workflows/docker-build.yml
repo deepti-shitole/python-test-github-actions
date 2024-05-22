@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build and Push Docker Image
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # or the branch you want to trigger the build on
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,3 +16,12 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t my-python-app1 .
+    
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.docker_token }}" | docker login -u "${{ secrets.docker_secret }}" --password-stdin
+
+    - name: Tag Docker image
+      run: docker tag my-python-app1 "${{ secrets.docker_secret }}/my-python-app1:latest"
+
+    - name: Push Docker image to Docker Hub
+      run: docker push "${{ secrets.docker_secret}}/my-python-app1:latest"
