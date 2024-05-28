@@ -23,6 +23,21 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pytest
+
+    - name: Install SonarScanner
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openjdk-11-jdk
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.12008-linux.zip
+        unzip sonar-scanner-cli-4.8.0.12008-linux.zip
+        
+    - name: SonarCloud Scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        sonar-scanner-4.8.0.12008-linux/bin/sonar-scanner -Dsonar.projectKey=python-test-github-actions -Dsonar.organization=deepti-shitole
+         -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
+        
         
 
     - name: Run tests
