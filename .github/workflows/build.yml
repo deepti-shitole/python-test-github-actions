@@ -19,7 +19,7 @@ jobs:
           projectBaseDir: .
           args: >
            -Dsonar.organization=deepti-shitole
-            -Dsonar.projectKey=python-test-github-actions
+            -Dsonar.projectKey=deepti-shitole_python-test-github-actions
     
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
