@@ -24,16 +24,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
 
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v1
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      with:
-         args: >
-            -Dsonar.organization=deepti-shitole
-            -Dsonar.projectKey=python-test-github-actions
-       
-        
+    
         
 
     - name: Run tests
