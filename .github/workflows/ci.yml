@@ -27,12 +27,19 @@ jobs:
       run: |
         python tests/test_addition.py
 
-    - name: Install SonarScanner
+    - name: Download SonarScanner
       run: |
-        sudo apt update
-        sudo apt install -y sonar-scanner
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-<VERSION>.zip
+        unzip sonar-scanner-cli-<VERSION>.zip
 
-    - name: Run SonarScanner
-      run: sonar-scanner
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Run SonarScanner Analysis
+      run: sonar-scanner/bin/sonar-scanner
+
+    - name: Run SonarScanner Analysis
+      run: |
+       sonar-scanner/bin/sonar-scanner \
+       -Dsonar.sources=src \
+       -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+       -Dsonar.analysis.mode=preview
+
+
