@@ -29,8 +29,9 @@ jobs:
 
     - name: Download SonarScanner
       run: |
-        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-<VERSION>.zip
-        unzip sonar-scanner-cli-<VERSION>.zip
+       wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.12008.zip
+       unzip sonar-scanner-cli-4.8.0.12008.zip
+
 
     - name: Run SonarScanner Analysis
       run: sonar-scanner/bin/sonar-scanner
