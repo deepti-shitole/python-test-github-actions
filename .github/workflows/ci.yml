@@ -27,8 +27,12 @@ jobs:
       run: |
         python tests/test_addition.py
 
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
+    - name: Install SonarScanner
+      run: |
+        sudo apt update
+        sudo apt install -y sonar-scanner
+
+    - name: Run SonarScanner
+      run: sonar-scanner
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
