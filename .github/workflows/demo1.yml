@@ -34,7 +34,6 @@ jobs:
       run: |
         cd src
         coverage run --source=. -m pytest test_addition.py
-        coverage xml -o coverage.xml  # Generate XML coverage report
         coverage html -d coverage_html  # Generate HTML coverage report
 
 
@@ -42,7 +41,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
-        path: |
-          coverage.xml
-          coverage_html/
+        path: src/coverage_html
+        
+          
       if: always()
