@@ -29,8 +29,8 @@ if __name__ == '__main__':
     cov = coverage.Coverage()
     cov.start()
     
-    unittest.main()
-
+    unittest.main(exit=False)
+    
     cov.stop()
     cov.save()
     cov.xml_report(outfile='coverage.xml')
