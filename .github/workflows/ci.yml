@@ -23,7 +23,7 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        coverage run test_addition.py
+        coverage run tests/test_addition.py
         coverage xml
 
     - name: SonarCloud Scan
