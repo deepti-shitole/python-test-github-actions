@@ -21,6 +21,12 @@ jobs:
         pip install -r requirements.txt
         pip install coverage
 
+    - name: Download and install SonarScanner
+      run: |
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.12008.zip
+        unzip sonar-scanner-cli-4.8.0.12008.zip
+        export PATH=$PATH:/path/to/sonar-scanner/bin
+
     - name: Run tests with coverage
       env:
         PYTHONPATH: ${{ github.workspace }}/src
