@@ -27,11 +27,14 @@ jobs:
 
     - name: Run tests
       run: |
+        ls -la  # List contents of the current directory
         cd src
-        pytest test_addition.py
+        ls -la  # List contents of the src directory
+        pytest --collect-only  # Show collected tests without running them
 
     - name: Generate coverage report
       run: |
+        cd src
         coverage run --source=. -m pytest test_addition.py
         coverage html -d coverage/  # Generate HTML coverage report
 
