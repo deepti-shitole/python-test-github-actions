@@ -26,23 +26,18 @@ jobs:
         PYTHONPATH: ${{ github.workspace }}/src
       run: |
         python tests/test_addition.py
+           coverage xml
 
     - name: Download SonarScanner
       run: |
-       wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170.zip
-       unzip sonar-scanner-cli-4.4.0.2170.zip
-
-
-
-
-    - name: Run SonarScanner Analysis
-      run: sonar-scanner/bin/sonar-scanner
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170.zip
+        unzip sonar-scanner-cli-4.4.0.2170.zip
 
     - name: Run SonarScanner Analysis
       run: |
-       sonar-scanner/bin/sonar-scanner \
-       -Dsonar.sources=src \
-       -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-       -Dsonar.analysis.mode=preview
+        sonar-scanner-4.4.0.2170/bin/sonar-scanner \
+        -Dsonar.sources=src \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+        -Dsonar.analysis.mode=preview
 
 
