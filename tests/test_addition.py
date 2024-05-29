@@ -1,18 +1,6 @@
-# test_addition.py
-
 import unittest
 from addition import add
 import coverage
-
-if __name__ == '__main__':
-    cov = coverage.Coverage()
-    cov.start()
-    
-    unittest.main()
-
-    cov.stop()
-    cov.save()
-    cov.xml_report(outfile='coverage.xml')
 
 class TestAddFunction(unittest.TestCase):
     def test_add_positive_numbers(self):
@@ -38,4 +26,11 @@ class TestAddFunction(unittest.TestCase):
             add("1", "2")
 
 if __name__ == '__main__':
+    cov = coverage.Coverage()
+    cov.start()
+    
     unittest.main()
+
+    cov.stop()
+    cov.save()
+    cov.xml_report(outfile='coverage.xml')
