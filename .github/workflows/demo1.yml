@@ -27,10 +27,8 @@ jobs:
 
     - name: Run tests
       run: |
-        ls -la  # List contents of the current directory
         cd src
-        ls -la  # List contents of the src directory
-        pytest --collect-only  # Show collected tests without running them
+        pytest test_addition.py
 
     - name: Generate coverage report
       run: |
@@ -42,5 +40,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
-        path: coverage/
+        path: src/coverage/  # Corrected path for uploading coverage report
       if: always()
