@@ -23,7 +23,7 @@ jobs:
 
     - name: Run tests with coverage
       env:
-        PYTHONPATH: ${{ github.workspace }}
+        PYTHONPATH: ${{ github.workspace }}/src
       run: |
         coverage run tests/test_addition.py
         coverage xml
