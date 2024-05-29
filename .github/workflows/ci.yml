@@ -33,7 +33,8 @@ jobs:
        unzip sonar-scanner-cli-4.2.0.1873-linux.zip
 
     - name: Run SonarScanner Analysis
-      run: sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
-           -Dsonar.sources=src \
-           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-           -Dsonar.analysis.mode=preview
+      run: |
+       export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
+       sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
+       -Dsonar.sources=src \
+       -Dsonar.analysis.mode=preview
