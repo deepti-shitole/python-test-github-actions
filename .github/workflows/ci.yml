@@ -25,8 +25,7 @@ jobs:
       env:
         PYTHONPATH: ${{ github.workspace }}/src
       run: |
-        coverage run tests/test_addition.py
-        coverage xml
+        python tests/test_addition.py
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
