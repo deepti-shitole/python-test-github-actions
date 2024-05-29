@@ -33,9 +33,7 @@ jobs:
         unzip sonar-scanner-cli-4.2.0.1873-linux.zip
 
     - name: Set Java Version
-      run: |
-        echo 'export JAVA_HOME=C:\\Program Files\\Java\\jdk-16.0.1' >> $GITHUB_ENV
-
+      run: export JAVA_HOME="C:\Program Files\Java\jdk-16.0.1"
 
     - name: Run SonarScanner Analysis
       run: |
