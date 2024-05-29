@@ -1,12 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   test:
@@ -33,18 +27,9 @@ jobs:
       run: |
         python tests/test_addition.py
 
-    - name: Download SonarScanner
-      run: |
-        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
-        unzip sonar-scanner-cli-4.2.0.1873-linux.zip
-
-    - name: Set Java Version
-      run: |
-        echo 'export JAVA_HOME=C:\\Program Files\\Java\\jdk-16.0.1' >> $GITHUB_ENV
-
     - name: Run SonarScanner Analysis
       run: |
-        sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
+        sonar-scanner \
         -Dsonar.sources=src \
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.analysis.mode=preview 
