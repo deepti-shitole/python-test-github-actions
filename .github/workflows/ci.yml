@@ -21,10 +21,11 @@ jobs:
         pip install -r requirements.txt
         pip install coverage
 
-    - name: Download SonarScanner
+    - name: Download and Unzip SonarScanner
       run: |
         wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
-        unzip sonar-scanner-cli-4.2.0.1873-linux.zip
+        unzip sonar-scanner-cli-4.2.0.1873-linux.zip -d $HOME/sonar-scanner
+        export PATH="$HOME/sonar-scanner/sonar-scanner-4.2.0.1873-linux/bin:$PATH"
 
     - name: Set up JDK 17
       uses: actions/setup-java@v2
@@ -41,10 +42,10 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17*/x64
-        PATH: /opt/hostedtoolcache/Java_Adopt_jdk/17*/x64/bin:${{ env.PATH }}
+        PATH: $HOME/sonar-scanner/sonar-scanner-4.2.0.1873-linux/bin:$JAVA_HOME/bin:$PATH
       run: |
-        sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
-           -Dsonar.sources=src \
+        sonar-scanner \
+          -Dsonar.sources=src \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
           -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
