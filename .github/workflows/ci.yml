@@ -33,15 +33,18 @@ jobs:
         java-version: '17'
 
     - name: Verify Java Version
-      run: java -version
+      run: |
+        java -version
+        javac -version
 
     - name: Run SonarScanner Analysis
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17*/x64
+        PATH: /opt/hostedtoolcache/Java_Adopt_jdk/17*/x64/bin:${{ env.PATH }}
       run: |
         sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
-          -Dsonar.sources=src \
+           -Dsonar.sources=src \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
           -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
