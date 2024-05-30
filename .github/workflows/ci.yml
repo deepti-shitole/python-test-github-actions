@@ -21,20 +21,20 @@ jobs:
         pip install -r requirements.txt
         pip install coverage
 
-    - name: Download SonarScanner
+    - name: Run tests and collect coverage
       run: |
-        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
-        unzip sonar-scanner-cli-4.2.0.1873-linux.zip
+        coverage run -m pytest
 
-    - name: Set Java Version
+    - name: Generate HTML coverage report
+      if: always() # Ensure this step runs even if previous steps fail
       run: |
-        sudo apt-get install openjdk-11-jdk
-        export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+        coverage html
+        mv htmlcov coverage_report
+        echo "Coverage report is ready"
 
-    - name: Run SonarScanner Analysis
-      run: |
-        sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
-        -Dsonar.sources=src \
-        -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-        -Dsonar.analysis.mode=preview \
-        -Dsonar.java.binaries=**/*.java
+    - name: Upload coverage report
+      if: always() # Ensure this step runs even if previous steps fail
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage_report
+        path: coverage_report
