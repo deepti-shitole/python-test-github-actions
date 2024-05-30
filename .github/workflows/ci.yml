@@ -6,9 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -31,12 +28,13 @@ jobs:
 
     - name: Set Java Version
       run: |
+        sudo apt-get install openjdk-11-jdk
         export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
     - name: Run SonarScanner Analysis
       run: |
         sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
         -Dsonar.sources=src \
-        -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-        -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
+        -Dsonar.analysis.mode=preview \
+        -Dsonar.java.binaries=**/*.java
