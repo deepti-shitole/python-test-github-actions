@@ -1,5 +1,5 @@
 import unittest
-from addition import add
+from src.addition import add  # Update the import path
 import coverage
 
 class TestAddFunction(unittest.TestCase):
@@ -34,4 +34,3 @@ if __name__ == '__main__':
     cov.stop()
     cov.save()
     cov.xml_report(outfile='coverage.xml')
-
